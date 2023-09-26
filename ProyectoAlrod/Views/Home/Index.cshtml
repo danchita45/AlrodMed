@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<button id="btn_AgregarPaciente" type="button" class="btn-link" onclick="AgregarNuevoModal()"> Agregar nuevo</button>
+
+
+<form asp-action="ExportToXml" asp-controller="HomeController"  method="post">
+    <button type="submit">Descargar XML</button>
+</form>
+
+<table width="100%" align="center" border="1" cellpadding="5">
+    <tr>
+        <th>Sexo</th>
+        <th>Edad</th>
+        <th>Fecha diagnóstico</th>
+        <th>Comborbilidades</th>
+        <th>ICC previa</th>
+        <th>FA</th>
+        <th>Trombofilia</th>
+        <th>Endocarditis</th>
+        <th>HP previa</th>
+        <th>TEP previa</th>
+        <th>TVP</th>
+        <th>TEP CRONICA</th>
+        <th>Otros</th>
+    </tr>
+    @foreach (Paciente p in ViewBag.Pacientes)
+    {
+        <tr>
+            <td>@p.Nombre</td>
+            <td>@p.Registro</td>
+            <td>@p.Sexo</td>
+            <td>@p.Edad</td>
+            <td>@p.FechaDiagnostico.ToShortDateString()</td>
+            <td>@p.comorbilidades.ICC</td>
+            <td>@p.comorbilidades.FA</td>
+            <td>@p.comorbilidades.Trombofilia</td>
+            <td>@p.comorbilidades.Endocarditis</td>
+            <td>@p.comorbilidades.HP_Previa</td>
+            <td>@p.comorbilidades.TEP_Previa</td>
+            <td>@p.comorbilidades.TVP_Previa</td>
+            <td>@p.comorbilidades.TEP_Cronica</td>
+            <td>Otros</td> 
+        </tr>
+    }
+</table>
